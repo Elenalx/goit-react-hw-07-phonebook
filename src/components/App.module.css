@@ -5,7 +5,7 @@
     margin-right: auto;
     border: 1px solid black;
     border-radius: 8px;
-    background-color: antiquewhite;
+    background-color: rgb(184, 184, 244);
 }
 
 .title {
@@ -17,5 +17,5 @@
     border: 1px solid black;
     border-radius: 4px;
     margin-bottom: 16px;
-    background-color: azure;
+    background-color: rgb(235, 218, 172);
 }

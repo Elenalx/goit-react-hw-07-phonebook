@@ -2,7 +2,11 @@ import css from './ContactItem.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/operations';
 import {
-  getContacts, getError, getFilterContacts, getIsLoading,} from 'redux/selectors';
+  getContacts,
+  getError,
+  getFilterContacts,
+  getIsLoading,
+} from 'redux/selectors';
 import { RotatingLines } from 'react-loader-spinner';
 
 

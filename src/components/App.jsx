@@ -1,7 +1,7 @@
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
-import css from 'components/ContactForm/ContactForm.module.css';
+import css from './App.module.css';
 import { ContactItem } from './ContactItem/ContactItems';
 import { Toaster } from 'react-hot-toast';
 
