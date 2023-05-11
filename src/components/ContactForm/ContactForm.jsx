@@ -2,17 +2,15 @@ import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import css from './ContactForm.module.css';
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
+import { getContacts } from 'redux/selectors';
+
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const handleSubmit = evt => {
-    evt.preventDefault();
-    addContactToState(name, number);
-    reset();
-  };
+
 
   const reset = () => {
     setName('');
@@ -27,16 +25,29 @@ export const ContactForm = () => {
     setNumber(evt.target.value);
   };
 
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  
+  const contactAdd = {
+    name: name,
+    phone: number,
+  };
 
-  const contactsStore = useSelector(state => state.contacts);
-  const addContactToState = (name, number) => {
-    if (contactsStore.find(obj => obj.name === name)) {
+  const contactsStore = useSelector(getContacts);
+
+  const addContactToServer = () => {
+    if (contactsStore.find(obj => obj.name === contactAdd.name)) {
       toast.error(`${name} is already in contacts.`);
       return;
     }
 
-    dispatch(addContact(name, number));
+
+    dispatch(addContact(contactAdd));
+  };
+
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    addContactToServer();
+    reset();
   };
 
   return (
@@ -74,5 +85,5 @@ export const ContactForm = () => {
       </button>
     </form>
   );
-}
+};
 

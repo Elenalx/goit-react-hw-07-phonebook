@@ -1,35 +1,39 @@
-/* .wrapperFilter {
+.item {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 15px;
-    margin: 0;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.labelFilter {
-    display: block;
-    font-weight: 500;
-    font-family: inherit;
-    margin-bottom: 5px;
+.item:not(:last-child) {
+    margin-bottom: 8px;
 }
 
-.inputFilter {
-    width: 150px;
-    margin-bottom: 25px;
-    font-weight: 300;
-    border-radius: 3px;
-    border: 1px solid black;
-} */
-
-.filterContainer {
-    display: flex;
-    flex-direction: column;
+.text {
+    padding: 2px 8px;
+    font-size: 18px;
+    line-height: 1.2;
 }
 
-.filter {
-    width: 100px
+.name {
+    width: 40%;
 }
 
-.label {
-    margin-bottom: 5px;
+.btn {
+    padding: 2px 8px;
+    font-size: 16px;
+    line-height: 1.2;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid;
+}
+
+.btn:hover,
+.btn:focus {
+    border-color: blue;
+    color: blue;
+}
+
+.btn:active {
+    background-color: cornflowerblue;
+    color: black;
 }
