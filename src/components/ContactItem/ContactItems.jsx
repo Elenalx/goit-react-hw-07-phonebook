@@ -14,15 +14,17 @@ export const ContactItem = () => {
   const contacts = useSelector(getContacts);
   const contactsFilter = useSelector(getFilterContacts);
 
-  const dispatch = useDispatch();
 
   const getVisibleContacts = () => {
-    const normalizedFilter = contactsFilter.toLowerCase();
+    const normalizedFilter = contactsFilter.state.toLowerCase();
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
   const renderContacts = getVisibleContacts();
+
+  const dispatch = useDispatch();
+
   const isLoading = useSelector(getIsLoading);
   const error = useSelector(getError);
 
@@ -45,3 +47,6 @@ export const ContactItem = () => {
     </>
   );
 };
+
+
+
