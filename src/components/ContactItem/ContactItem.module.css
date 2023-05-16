@@ -1,39 +1,16 @@
 .item {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    gap: 15px;
 }
 
-.item:not(:last-child) {
-    margin-bottom: 8px;
-}
-
-.text {
-    padding: 2px 8px;
-    font-size: 18px;
-    line-height: 1.2;
-}
-
-.name {
-    width: 40%;
-}
-
-.btn {
-    padding: 2px 8px;
-    font-size: 16px;
-    line-height: 1.2;
-    background-color: white;
-    border-radius: 4px;
-    border: 1px solid;
-}
-
-.btn:hover,
-.btn:focus {
-    border-color: blue;
-    color: blue;
-}
-
-.btn:active {
-    background-color: cornflowerblue;
+.button {
+    border: 2px solid blue;
+    border-radius: 5px;
     color: black;
+    background-color: white;
+    cursor: pointer;
+}
+
+.button:hover {
+    border: 2px solid red;
 }

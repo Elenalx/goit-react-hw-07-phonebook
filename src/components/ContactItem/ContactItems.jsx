@@ -1,52 +1,41 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import css from './ContactItem.module.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/operations';
-import {
-  getContacts,
-  getError,
-  getFilterContacts,
-  getIsLoading,
-} from 'redux/selectors';
-import { RotatingLines } from 'react-loader-spinner';
 
 
-export const ContactItem = () => {
-  const contacts = useSelector(getContacts);
-  const contactsFilter = useSelector(getFilterContacts);
-
-
-  const getVisibleContacts = () => {
-    const normalizedFilter = contactsFilter.state.toLowerCase();
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter)
-    );
-  };
-  const renderContacts = getVisibleContacts();
-
+export const ContactItem = ({ name, number, id }) => {
   const dispatch = useDispatch();
+  // const { name, number, id } = contact;
 
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
-
+  const onClick = ()=> {
+    dispatch(deleteContact({id}))
+  }
   return (
     <>
-      {renderContacts.map(({ id, name, phone }) => (
-        <li className={css.item} key={id}>
-         <p className={(css.text, css.name)}>{name}:</p>
-          <p className={css.text}>{phone}</p>
-          <button
-            className={css.btn}
-            type="button"
-            disabled={isLoading}
-            onClick={() => dispatch(deleteContact(id))}
-          >
-            {isLoading && !error && <RotatingLines width="12" />}Delete
-          </button>
-        </li>
-      ))}
+      <div className={css.item}>
+        <p>{name}:</p>
+        <p>{number}</p>
+        <button
+          className={css.button}
+          type="button"
+          onClick={onClick}
+          // onClick={() => dispatch(deleteContact(id))}
+        >
+          Delete
+        </button>
+      </div>
     </>
   );
 };
 
-
-
+ContactItem.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
+    })
+  ),
+};

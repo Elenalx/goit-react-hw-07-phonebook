@@ -1,19 +1,22 @@
-import React, { useEffect } from 'react';
-
-import { ContactForm } from './ContactForm/ContactForm';
-import { Filter } from './Filter/Filter';
+import React from 'react';
+import { FormContact } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
-import { ContactItem } from './ContactItem/ContactItems';
-import css from './App.module.css';
-import { Toaster } from 'react-hot-toast';
-import { useDispatch, useSelector } from 'react-redux';
+import { FilterContact } from './Filter/FilterContact';
+import {Loader} from './Loader/Loader';
+import { Section } from './Section/Section';
+
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
 import { fetchContacts } from 'redux/operations';
-import { getError, getIsLoading } from 'redux/selectors';
+
+import css from './App.module.css';
 
 export const App = () => {
+  const contacts = useSelector(selectContacts);
+  const error = useSelector(selectError);
+  const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -21,18 +24,32 @@ export const App = () => {
 
   return (
     <div className={css.container}>
-      <h2 className={css.title}>Phonebook</h2>
-      <ContactForm />
-
-      <h2 className={css.title}>Contacts</h2>
-      <div className={css.smalContainer}>
-        <Filter />
-        {isLoading && !error && <b>Request in progress...</b>}
-        <ContactList>
-          <ContactItem />
-        </ContactList>
-        <Toaster />
-      </div>
+      <Section title="Phonebook">
+        <FormContact />
+      </Section>
+      {isLoading && !error && <Loader />} 
+      {contacts.length > 0 && (
+        <Section title="Contacts">
+          <FilterContact />
+          <ContactList />
+         
+        </Section>
+      )}
     </div>
   );
 };
+
+// return (
+//   <div className={css.container}>
+//     <Section title="Phonebook">
+//       <FormContact  />
+//     </Section>
+//     {contacts.length > 0 &&
+//     <Section title="Contacts">
+//       <FilterContact  />
+//         <ContactList />
+//         {isLoading && !error && <b>Request in progress...</b>}
+//     </Section>
+//     }
+//   </div>
+// );

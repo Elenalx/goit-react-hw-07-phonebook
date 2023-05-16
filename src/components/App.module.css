@@ -1,21 +1,10 @@
 .container {
-    padding: 20px;
     width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid black;
-    border-radius: 8px;
-    background-color: rgb(184, 184, 244);
-}
+    margin: 0 auto;
+    padding: 20px;
+    background-color: aliceblue;
+    border-radius: 5px;
+    box-shadow: inset 0 0 10px 5px rgba(0, 0, 0, 0.3);
+    ;
 
-.title {
-    margin-bottom: 16px;
-}
-
-.smalContainer {
-    padding: 8px;
-    border: 1px solid black;
-    border-radius: 4px;
-    margin-bottom: 16px;
-    background-color: rgb(235, 218, 172);
 }
